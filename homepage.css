@@ -1,0 +1,58 @@
+p {
+	color: black;
+}
+
+h1 {
+	border: 1px solid black;
+}
+
+.wrapper{
+	background-color: #EEE;
+	padding: 0px;
+	margin: 0px;
+	display: grid;
+	grid-template-columns: 70% 150px 10%;
+	grid-template-rows: 200px 80px 54px;
+}
+
+.wrapper div:nth-child(odd) {
+	background-color: green;
+}
+
+.hej > p {
+	color: blue;
+}
+
+.grid {
+		height: 400px;
+		width: 600px;
+		padding-top: 100px;
+
+		margin: auto;
+
+		display: grid;
+		grid-gap: 10px 10px;
+		grid-template-columns: 340px 250px;
+		grid-template-rows: 0.75fr 1fr 1fr;
+		grid-template-areas: "a b"
+												 "a c"
+												 "a c";
+
+		background-color: grey;
+}
+
+.grid div {
+	background-color: #2286f4;
+}
+
+#welcome {
+	grid-area: a;
+}
+
+#login {
+	grid-area: b;
+}
+
+#register {
+	grid-area: c;
+}
