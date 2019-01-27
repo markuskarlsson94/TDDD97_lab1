@@ -1,28 +1,3 @@
-p {
-	color: black;
-}
-
-h1 {
-	border: 1px solid black;
-}
-
-.wrapper{
-	background-color: #EEE;
-	padding: 0px;
-	margin: 0px;
-	display: grid;
-	grid-template-columns: 70% 150px 10%;
-	grid-template-rows: 200px 80px 54px;
-}
-
-.wrapper div:nth-child(odd) {
-	background-color: green;
-}
-
-.hej > p {
-	color: blue;
-}
-
 .grid {
 		height: 400px;
 		width: 600px;
