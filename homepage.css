@@ -12,8 +12,6 @@
 		grid-template-areas: "a b"
 												 "a c"
 												 "a c";
-
-		background-color: grey;
 }
 
 .grid div {
