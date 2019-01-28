@@ -8,10 +8,15 @@
 		display: grid;
 		grid-gap: 10px 10px;
 		grid-template-columns: 340px 250px;
-		grid-template-rows: 0.75fr 1fr 1fr;
+		grid-template-rows: 0.7fr 1fr 1fr;
 		grid-template-areas: "a b"
 												 "a c"
 												 "a c";
+
+}
+
+p {
+	color: white;
 }
 
 .grid div {
@@ -24,15 +29,19 @@
 
 .form label {
 	display: inline-block;
-	float: left;
-	clear: left;
-	width: 6em;
+	float: right;
+	margin-bottom: 2px;
+	color: white;
 }
 
-.form input {
+.form input, select {
 	display: inline-block;
+	width: 135px;
+	box-sizing: border-box;
+}
 
-	width: 120px;
+.submit {
+	float: right;
 }
 
 #welcome {
@@ -49,7 +58,6 @@
 
 #welcome p {
 	text-align: center;
-	color: white;
 	padding-left: 20px;
 	padding-right: 20px;
 	padding-top: 20px;

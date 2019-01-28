@@ -13,21 +13,34 @@
 				<p>The only place you get excited when a stranger follows you</p>
 			</div>
 
-			<div class=form id="login">
+			<!--LOGIN---------------------------------------->
+			<div class="form" id="login">
 				<form action="">
-					<div class="inputfield">
-						<label for="username">Username:<input type="text" name="username" value="email"></label>
-					</div>
-
-					<div class="inputfield">
-						<label for="password">Password:<input type="password" name="password" value="password"></label>
-					</div>
-					<input type="submit" value="submit">
+						<label>Username: <input type="text" name="username" value="email"></label>
+						<label>Password: <input type="password" name="password" value="password"></label>
+						<input class="submit" type="submit" value="Login">
 				</form>
 			</div>
 
+			<!--REGISTER--------------------------------------->
 			<div class=form id=register>
-				Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nobis vel veniam facilis et porro aut molestiae placeat earum exercitationem, neque.
+				<form action="">
+					<label>First name: <input type="text" name="firstname" value="namn"></label>
+					<label>Last name: <input type="text" name="lastname" value="namnsson"></label>
+					<label>Gender:
+						<select>
+							<option value="male">Male</option>
+							<option value="female">Female</option>
+							<option value="other">Other</option>
+						</select>
+					</label>
+					<label>City: <input type="text" name="city" value=""></label>
+					<label>Country: <input type="text" name="country" value=""></label>
+					<label>Email: <input type="text" name="email" value=""></label>
+					<label>Password: <input type="password" name="psw1" value=""></label>
+					<label>Repeat psw: <input type="password" name="psw2" value=""></label>
+					<input class="submit" type="submit" value="Register">
+				</form>
 			</div>
 		</div>
 
