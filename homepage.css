@@ -18,6 +18,23 @@
 	background-color: #2286f4;
 }
 
+.form {
+	padding: 5px;
+}
+
+.form label {
+	display: inline-block;
+	float: left;
+	clear: left;
+	width: 6em;
+}
+
+.form input {
+	display: inline-block;
+
+	width: 120px;
+}
+
 #welcome {
 	grid-area: a;
 }
