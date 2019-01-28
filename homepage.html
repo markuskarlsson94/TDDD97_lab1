@@ -5,7 +5,7 @@
     <link rel="stylesheet" href="homepage.css">
 	</head>
 
-    <body>
+  <body>
 
 		<div class="grid">
 			<div id="welcome">
@@ -16,33 +16,35 @@
 			<!--LOGIN---------------------------------------->
 			<div class="form" id="login">
 				<form action="">
-						<label>Username: <input type="text" name="username" value="email"></label>
-						<label>Password: <input type="password" name="password" value="password"></label>
+						<label>Username: <input type="text" name="username" value="email" required></label>
+						<label>Password: <input type="password" name="password" value="password" required></label>
 						<input class="submit" type="submit" value="Login">
 				</form>
 			</div>
+			<!------------------------------------------------->
 
 			<!--REGISTER--------------------------------------->
 			<div class=form id=register>
 				<form action="">
-					<label>First name: <input type="text" name="firstname" value="namn"></label>
-					<label>Last name: <input type="text" name="lastname" value="namnsson"></label>
+					<label>First name: <input type="text" name="firstname" value="namn" required></label>
+					<label>Last name: <input type="text" name="lastname" value="namnsson" required></label>
 					<label>Gender:
-						<select>
+						<select required>
 							<option value="male">Male</option>
 							<option value="female">Female</option>
 							<option value="other">Other</option>
 						</select>
 					</label>
-					<label>City: <input type="text" name="city" value=""></label>
-					<label>Country: <input type="text" name="country" value=""></label>
-					<label>Email: <input type="text" name="email" value=""></label>
-					<label>Password: <input type="password" name="psw1" value=""></label>
-					<label>Repeat psw: <input type="password" name="psw2" value=""></label>
-					<input class="submit" type="submit" value="Register">
+					<label>City: <input type="text" name="city" value="" required></label>
+					<label>Country: <input type="text" name="country" value="" required></label>
+					<label>Email: <input type="text" name="email" value="" required></label>
+					<label>Password: <input type="password" name="psw1" value="" required></label>
+					<label>Repeat psw: <input type="password" name="psw2" value="" required></label>
+					<input class="submit" type="submit" value="Register" required>
 				</form>
 			</div>
+			<!------------------------------------------------->
 		</div>
 
-		</body>
+	</body>
 </html>
