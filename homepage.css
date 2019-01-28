@@ -17,6 +17,7 @@
 
 p {
 	color: white;
+	font-family: "Arial";
 }
 
 .grid div {
@@ -32,6 +33,7 @@ p {
 	float: right;
 	margin-bottom: 2px;
 	color: white;
+	font-family: "Arial";
 }
 
 .form input, select {
