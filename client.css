@@ -99,8 +99,10 @@ p {
 #settings {
 	grid-area: c;
 	height: 200px;
+	padding: 10px;
 }
 
 #wall {
 	grid-area: b;
+	padding: 10px;
 }
