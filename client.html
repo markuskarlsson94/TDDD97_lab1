@@ -1,19 +1,69 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>Twidder</title>
+		<title>Twidder!</title>
     <link rel="stylesheet" href="client.css">
 		<script type="text/javascript" src=client.js></script>
 
+		<!--Profile VIEW-->
 		<script id="profileView" type="text/view">
-			<h1>Profile view!</h1>
-			<input type="button" value="log out" onClick="loadWelcome()">
+			<div id="profileGrid" class="grid">
+				<div id="profilePic">
+					<img src="Images/Arnold.jpg" alt="Arnold" width=150 height=150/>
+				</div>
+
+				<div id="settings">
+					<input type="button" value="log out" onClick="loadWelcome()">
+				</div>
+
+				<div id="wall">
+					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nisi dolorum pariatur numquam itaque ipsa beatae dignissimos id repudiandae sunt, eius illum fuga nostrum facilis molestias temporibus placeat molestiae culpa cupiditate, alias hic, magnam aut. Quas, consequuntur blanditiis reprehenderit nam molestias, ducimus reiciendis nihil id voluptatem ut voluptate qui. Tempora qui laudantium dolorem provident assumenda tempore dicta, rerum, hic iste, nulla eaque accusantium fuga veritatis ducimus atque error. Vel qui tempora possimus magnam esse sint magni adipisci aperiam voluptatem! Debitis illo blanditiis ipsum ex iusto reiciendis repellat nesciunt, minima corporis adipisci odit culpa accusantium quos. Aut deleniti repellat magnam beatae nesciunt commodi quos optio magni saepe accusamus soluta nihil voluptas at sapiente consequatur, hic. Incidunt accusantium explicabo animi, ipsa eaque ipsam deserunt, consequatur ullam modi, provident sunt? Nemo vel veniam, possimus asperiores laborum eaque. Nostrum nobis doloremque reprehenderit, qui ut sit excepturi harum laboriosam explicabo minus voluptates et sed modi unde fuga autem id officiis quod vitae dignissimos assumenda consectetur dicta, cupiditate saepe quas. Veritatis suscipit aperiam quae ex atque odio nobis, a error tempora maiores labore molestias nesciunt repellendus, odit at enim temporibus iste repudiandae quis adipisci. Ducimus amet numquam voluptas asperiores debitis nemo, deserunt ab neque temporibus consectetur maiores natus ratione iure exercitationem magnam perspiciatis quaerat nesciunt! Sed voluptatum voluptatibus fugit magni consequuntur, fugiat deserunt impedit quaerat itaque libero maxime neque assumenda tempora accusamus aliquam molestias at laudantium tempore, ratione qui quo quam. Deserunt voluptatibus tenetur tempore ipsa sed dolores accusantium iure voluptate perspiciatis quisquam vero mollitia itaque tempora autem ducimus ipsum id quod omnis reiciendis rerum facilis, sint. Quia cupiditate porro iusto numquam ducimus cumque tempora. Aliquid atque esse repellat aliquam dolorem eius fugiat, recusandae deserunt, omnis, distinctio itaque laborum! Natus, ex culpa molestiae hic in doloremque, labore repellendus quos soluta beatae voluptate sed quaerat. Laboriosam a, est!</p>
+				</div>
+			</div>
 		</script>
 
+		<!--WELCOME VIEW-->
 		<script id="welcomeView" type="text/view">
-			<h2>Welcome view</h2>
-			<input type="button" value="log in" onClick="loadProfile()">
+			<div id="welcomeGrid" class="grid">
+				<div id="welcome">
+					<img src="Images/twidder.png" alt="">
+					<p>The only place you get excited when a stranger follows you</p>
+				</div>
+
+				<!--LOGIN---------------------------------------->
+				<div class="form" id="login">
+					<form action="" onSubmit="loadProfile()">
+							<label>Email: <input type="email" name="username" value="email" required></label>
+							<label>Password: <input type="password" name="password" value="password" required></label>
+							<input class="submit" type="submit" value="Login">
+					</form>
+				</div>
+				<!------------------------------------------------->
+
+				<!--REGISTER--------------------------------------->
+				<div class=form id=register>
+					<form action="">
+						<label>First name: <input type="text" name="firstname" value="namn" required></label>
+						<label>Last name: <input type="text" name="lastname" value="namnsson" required></label>
+						<label>Gender:
+							<select required>
+								<option value="male">Male</option>
+								<option value="female">Female</option>
+								<option value="other">Other</option>
+							</select>
+						</label>
+						<label>City: <input type="text" name="city" value="" required></label>
+						<label>Country: <input type="text" name="country" value="" required></label>
+						<label>Email: <input type="email" name="email" value="" required></label>
+						<label>Password: <input type="password" name="psw1" value="" required></label>
+						<label>Repeat psw: <input type="password" name="psw2" value="" required></label>
+						<input class="submit" type="submit" value="Register" required>
+					</form>
+				</div>
+				<!------------------------------------------------->
+			</div>
 		</script>
+
 	</head>
 
   <body>

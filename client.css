@@ -1,18 +1,31 @@
+#welcomeGrid {
+	height: 400px;
+	width: 600px;
+	padding-top: 100px;
+
+	grid-template-columns: 340px 250px;
+	grid-template-rows: 0.7fr 1fr 1fr;
+	grid-template-areas: "a b"
+											 "a c"
+											 "a c";
+}
+
+#profileGrid {
+	height: 400px;
+	width: 600px;
+	padding-top: 100px;
+
+	grid-template-columns: 170px 400px;
+	grid-template-rows: 170px 200px 200px;
+	grid-template-areas: "a b"
+											 "c b"
+											 "c b"
+}
+
 .grid {
-		height: 400px;
-		width: 600px;
-		padding-top: 100px;
-
-		margin: auto;
-
-		display: grid;
-		grid-gap: 10px 10px;
-		grid-template-columns: 340px 250px;
-		grid-template-rows: 0.7fr 1fr 1fr;
-		grid-template-areas: "a b"
-												 "a c"
-												 "a c";
-
+	margin: auto;
+	display: grid;
+	grid-gap: 10px 10px;
 }
 
 p {
@@ -20,8 +33,9 @@ p {
 	font-family: "Arial";
 }
 
-.grid div {
+.grid > div {
 	background-color: #2286f4;
+	border-radius: 4px;
 }
 
 .form {
@@ -71,4 +85,22 @@ p {
 
 #register {
 	grid-area: c;
+}
+
+#profilePic {
+	grid-area: a;
+}
+
+#profilePic > img {
+	padding: 10px;
+	border-radius: 14px;
+}
+
+#settings {
+	grid-area: c;
+	height: 200px;
+}
+
+#wall {
+	grid-area: b;
 }
