@@ -4,49 +4,21 @@
 		<title>Twidder</title>
     <link rel="stylesheet" href="client.css">
 		<script type="text/javascript" src=client.js></script>
+
+		<script id="profileView" type="text/view">
+			<h1>Profile view!</h1>
+			<input type="button" value="log out" onClick="loadWelcome()">
+		</script>
+
+		<script id="welcomeView" type="text/view">
+			<h2>Welcome view</h2>
+			<input type="button" value="log in" onClick="loadProfile()">
+		</script>
 	</head>
 
   <body>
 
-		<div class="grid">
-			<div id="welcome">
-				<img src="twidder.png" alt="">
-				<p>The only place you get excited when a stranger follows you</p>
-				<input type="button" value="fun" onclick="test()">
-			</div>
-
-			<!--LOGIN---------------------------------------->
-			<div class="form" id="login">
-				<form action="">
-						<label>Username: <input type="text" name="username" value="email" required></label>
-						<label>Password: <input type="password" name="password" value="password" required></label>
-						<input class="submit" type="submit" value="Login">
-				</form>
-			</div>
-			<!------------------------------------------------->
-
-			<!--REGISTER--------------------------------------->
-			<div class=form id=register>
-				<form action="">
-					<label>First name: <input type="text" name="firstname" value="namn" required></label>
-					<label>Last name: <input type="text" name="lastname" value="namnsson" required></label>
-					<label>Gender:
-						<select required>
-							<option value="male">Male</option>
-							<option value="female">Female</option>
-							<option value="other">Other</option>
-						</select>
-					</label>
-					<label>City: <input type="text" name="city" value="" required></label>
-					<label>Country: <input type="text" name="country" value="" required></label>
-					<label>Email: <input type="text" name="email" value="" required></label>
-					<label>Password: <input type="password" name="psw1" value="" required></label>
-					<label>Repeat psw: <input type="password" name="psw2" value="" required></label>
-					<input class="submit" type="submit" value="Register" required>
-				</form>
-			</div>
-			<!------------------------------------------------->
-		</div>
+		<div id="content"></div>
 
 	</body>
 </html>
