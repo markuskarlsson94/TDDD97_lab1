@@ -41,22 +41,22 @@
 				<!------------------------------------------------->
 
 				<!--REGISTER--------------------------------------->
-				<div class=form id=register>
-					<form action="" onSubmit="return validateRegisterForm()">
-						<label>First name: <input type="text" name="firstname" value="namn" required></label>
-						<label>Last name: <input type="text" name="lastname" value="namnsson" required></label>
+				<div class=form id="register">
+					<form id="registerForm" action="" onSubmit="return validateRegisterForm()">
+						<label>First name: <input type="text" id="registerFirstname" value="namn" required></label>
+						<label>Last name: <input type="text" id="registerLastname" value="namnsson" required></label>
 						<label>Gender:
-							<select required>
+							<select id="registerGender" required>
 								<option value="male">Male</option>
 								<option value="female">Female</option>
 								<option value="other">Other</option>
 							</select>
 						</label>
-						<label>City: <input type="text" name="city" value="a" required></label>
-						<label>Country: <input type="text" name="country" value="a" required></label>
-						<label>Email: <input type="email" name="email" value="m@a.com" required></label>
-						<label>Password: <input type="password" id="psw1" name="psw1" value="a" required></label>
-						<label>Repeat psw: <input type="password" id="psw2" name="psw2" value="a" required></label>
+						<label>City: <input type="text" id="registerCity" value="a" required></label>
+						<label>Country: <input type="text" id="registerCountry" value="a" required></label>
+						<label>Email: <input type="email" id="registerEmail" value="m@a.com" required></label>
+						<label>Password: <input type="password" id="registerPass1" value="aaaaaaaa" required></label>
+						<label>Repeat psw: <input type="password" id="registerPass2" value="aaaaaaaa" required></label>
 						<input class="submit" type="submit" value="Register" required>
 					</form>
 				</div>

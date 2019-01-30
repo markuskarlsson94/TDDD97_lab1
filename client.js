@@ -38,8 +38,12 @@ function userLoggedIn() {
 }
 
 function validateRegisterForm() {
-  var pass1 = document.getElementById("psw1").value;
-  var pass2 = document.getElementById("psw2").value;
+  //var form = document.getElementById("registerForm");
+
+  //var pass1 = document.getElementById("psw1").value;
+  //var pass2 = document.getElementById("psw2").value;
+  var pass1 = document.getElementById("registerPass1").value;
+  var pass2 = document.getElementById("registerPass2").value;
 
   if (pass1.length < 8)
   {
@@ -53,9 +57,24 @@ function validateRegisterForm() {
   }
 
   hideErrorMessage();
-  return false;
+  //return false;
 
-  //ok it works now
+  //After validation is complete, register users
+
+  var user = new object();
+  user.email = document.getElementById("registerEmail").stringify;
+  user.password = document.getElementById("registerPass1").stringify;
+  user.firstname = document.getElementById("registerFirstname").stringify;
+  user.familyname = document.getElementById("registerLastname").stringify;
+  user.gender = document.getElementById("registerGender").stringify;
+  user.city = document.getElementById("registerCity").stringify;
+  user.country = document.getElementById("registerCountry").stringify;
+
+  alert("hejsan");
+  var result = serverstub.signUp(user);
+  alert(result.message.value);
+
+  return false;
 }
 
 function displayErrorMessage(message) {
