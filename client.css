@@ -1,7 +1,7 @@
 #welcomeGrid {
 	height: 400px;
 	width: 600px;
-	padding-top: 100px;
+	padding-top: 10px;
 
 	grid-template-columns: 340px 250px;
 	grid-template-rows: 0.7fr 1fr 1fr;
