@@ -54,6 +54,8 @@ function validateRegisterForm() {
 
   hideErrorMessage();
   return false;
+
+  //ok it works now
 }
 
 function displayErrorMessage(message) {
