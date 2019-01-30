@@ -38,3 +38,26 @@ function userLoggedIn() {
     return false;
   }
 }
+
+function validateRegisterForm() {
+  var pass1 = document.getElementById("psw1").value;
+  var pass2 = document.getElementById("psw2").value;
+
+  if (pass1.length < 8)
+  {
+    alert("password 1 too short");
+    return false;
+  }
+  else if (pass2.length < 8)
+  {
+    alert("password 2 too short");
+    return false;
+  }
+  else if (pass1 != pass2)
+  {
+    alert("passwords do not match");
+    return false;
+  }
+
+  return true;
+}

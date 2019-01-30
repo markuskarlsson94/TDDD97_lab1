@@ -42,7 +42,7 @@
 
 				<!--REGISTER--------------------------------------->
 				<div class=form id=register>
-					<form action="">
+					<form action="" onSubmit="return validateRegisterForm()">
 						<label>First name: <input type="text" name="firstname" value="namn" required></label>
 						<label>Last name: <input type="text" name="lastname" value="namnsson" required></label>
 						<label>Gender:
@@ -52,11 +52,11 @@
 								<option value="other">Other</option>
 							</select>
 						</label>
-						<label>City: <input type="text" name="city" value="" required></label>
-						<label>Country: <input type="text" name="country" value="" required></label>
-						<label>Email: <input type="email" name="email" value="" required></label>
-						<label>Password: <input type="password" name="psw1" value="" required></label>
-						<label>Repeat psw: <input type="password" name="psw2" value="" required></label>
+						<label>City: <input type="text" name="city" value="a" required></label>
+						<label>Country: <input type="text" name="country" value="a" required></label>
+						<label>Email: <input type="email" name="email" value="m@a.com" required></label>
+						<label>Password: <input type="password" id="psw1" name="psw1" value="a" required></label>
+						<label>Repeat psw: <input type="password" id="psw2" name="psw2" value="a" required></label>
 						<input class="submit" type="submit" value="Register" required>
 					</form>
 				</div>
