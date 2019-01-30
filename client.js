@@ -1,5 +1,4 @@
 window.onload = function() {
-  //loadWelcome();
   if (userLoggedIn()) {
     loadProfile();
   } else {
@@ -11,7 +10,6 @@ function loadProfile() {
   var html = document.getElementById("profileView");
   var cont = document.getElementById("content");
   cont.innerHTML=html.innerHTML;
-  console.log("hej");
 }
 
 function loadWelcome() {
@@ -45,19 +43,28 @@ function validateRegisterForm() {
 
   if (pass1.length < 8)
   {
-    alert("password 1 too short");
-    return false;
-  }
-  else if (pass2.length < 8)
-  {
-    alert("password 2 too short");
+    displayErrorMessage("The chosen password is too short");
     return false;
   }
   else if (pass1 != pass2)
   {
-    alert("passwords do not match");
+    displayErrorMessage("The passwords do not match");
     return false;
   }
 
-  return true;
+  hideErrorMessage();
+  return false;
+}
+
+function displayErrorMessage(message) {
+  var anchor = document.getElementById("errorMessageAnchor");
+  var errorHTML = document.getElementById("errorMessageHTML");
+  anchor.innerHTML = errorHTML.innerHTML;
+  var p = document.getElementById("errorMessageParagraph"); //This has to be after thr first paste because it cant find the id if it's inside a script tag
+  p.innerHTML=message;
+}
+
+function hideErrorMessage() {
+    var anchor = document.getElementById("errorMessageAnchor");
+    anchor.innerHTML = "";
 }

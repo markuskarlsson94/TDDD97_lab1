@@ -1,7 +1,7 @@
 #welcomeGrid {
 	height: 400px;
 	width: 600px;
-	padding-top: 10px;
+	padding-top: 100px;
 
 	grid-template-columns: 340px 250px;
 	grid-template-rows: 0.7fr 1fr 1fr;
@@ -16,10 +16,10 @@
 	padding-top: 100px;
 
 	grid-template-columns: 170px 400px;
-	grid-template-rows: 170px 200px 200px;
+	grid-template-rows: 170px 200px 200px 20px;
 	grid-template-areas: "a b"
 											 "c b"
-											 "c b"
+											 "c b";
 }
 
 .grid {
@@ -85,6 +85,23 @@ p {
 
 #register {
 	grid-area: c;
+}
+
+#errorMessage {
+ width: 600px;
+ height: 30px;
+ position: absolute;
+ top: 540px;
+ background-color: #db2b1a; //red -ish
+}
+
+#errorMessage > p {
+	margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
 }
 
 #profilePic {
