@@ -38,17 +38,6 @@ function loadAccount() {
   hideErrorMessage();
 }
 
-function logIn() {
-  localStorage.setItem("loggedIn","true");
-  //loadProfile();
-  loadHome();
-}
-
-function logOut() {
-  localStorage.setItem("loggedIn","false");
-  loadWelcome();
-}
-
 function userLoggedIn() {
   if (localStorage.getItem("token") === null ) {
     return false;
