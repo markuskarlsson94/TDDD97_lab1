@@ -1,7 +1,7 @@
 #welcomeGrid {
 	height: 400px;
 	width: 600px;
-	padding-top: 100px;
+	padding-top: 10px; --grid gap of 10 excluded (=100px)
 
 	grid-template-columns: 340px 250px;
 	grid-template-rows: 0.7fr 1fr 1fr;
@@ -13,9 +13,9 @@
 #profileGrid {
 	height: 400px;
 	width: 600px;
-	padding-top: 100px;
+	padding-top: 0px;
 
-	grid-template-columns: 170px 400px;
+	grid-template-columns: 170px 420px;
 	grid-template-rows: 170px 200px 200px;
 	grid-template-areas: "a b"
 											 "c b"
@@ -88,20 +88,20 @@ p {
 }
 
 #errorMessage {
- width: 600px;
- height: 30px;
- position: absolute;
- top: 510px;
- background-color: #db2b1a; //red -ish
+	margin: auto;
+	margin-top: 60px;
+	height: 30px;
+	width: 600px;
+	background-color: #db2b1a;
+	border-radius: 4px;
+	display: table;
 }
 
 #errorMessage > p {
-	margin: 0;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  -ms-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
+	display: table-cell;
+  vertical-align: middle;
+  text-align: center;
+	font-weight: bold;
 }
 
 #profilePic {
@@ -124,6 +124,38 @@ p {
 	padding: 10px;
 }
 
-#profileview #errorMessageAnchor {
-	background-color: green;
+#navbar {
+	width: 600px;
+	height: 30px;
+	background-color: #2286f4;
+	border-radius: 4px;
+
+	margin: auto;
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+.navbarButton {
+	width: 80px;
+	height: 30px;
+	float: left;
+	text-align: center;
+	display: table;
+}
+
+.navbarButton:hover {
+	background-color: #1662b7;
+}
+
+#navbarCenter {
+	width: 240px;
+	height: 30px;
+	margin: auto;
+}
+
+.navbarButton > p {
+	display: table-cell;
+  vertical-align: middle;
+  text-align: center;
+	font-weight: bold;
 }

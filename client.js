@@ -4,18 +4,24 @@ window.onload = function() {
   } else {
     loadWelcome();
   }
+
+  hideErrorMessage();
 }
 
 function loadProfile() {
   var html = document.getElementById("profileView");
   var cont = document.getElementById("content");
   cont.innerHTML=html.innerHTML;
+
+  hideErrorMessage();
 }
 
 function loadWelcome() {
   var html = document.getElementById("welcomeView");
   var cont = document.getElementById("content");
   cont.innerHTML=html.innerHTML;
+
+  hideErrorMessage();
 }
 
 function logIn() {
@@ -104,14 +110,33 @@ function registerUser(form) {
 }
 
 function displayErrorMessage(message) {
-  var anchor = document.getElementById("errorMessageAnchor");
-  var errorHTML = document.getElementById("errorMessageHTML");
-  anchor.innerHTML = errorHTML.innerHTML;
-  var p = document.getElementById("errorMessageParagraph"); //This has to be after thr first paste because it cant find the id if it's inside a script tag
+  //var anchor = document.getElementById("errorMessageAnchorLoggedIn");
+  //var errorHTML = document.getElementById("errorMessageHTML");
+  //anchor.innerHTML = errorHTML.innerHTML;
+  var error = document.getElementById("errorMessage");
+  error.style.visibility = "visible";
+  var p = document.getElementById("errorMessageParagraph"); //This has to be after the first paste because it cant find the id if it's inside a script tag
   p.innerHTML=message;
 }
 
 function hideErrorMessage() {
-    var anchor = document.getElementById("errorMessageAnchor");
-    anchor.innerHTML = "";
+    //var anchor = document.getElementById("errorMessageAnchor");
+    //anchor.innerHTML = "";
+    var error = document.getElementById("errorMessage");
+    error.style.visibility = "hidden";
+}
+
+function test() {
+  var token = localStorage.getItem("token");
+  var div = document.getElementById("errorMessage");
+  div.style.visibility = "hidden";
+  alert(getNameByToken(token));
+}
+
+function getNameByToken(token) {
+  var obj = serverstub.getUserDataByToken(token);
+  var firstname = obj.data.firstname;
+  var familyname = obj.data.familyname;
+  var fullname = firstname + " " + familyname;
+  return fullname;
 }

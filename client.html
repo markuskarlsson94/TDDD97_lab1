@@ -8,16 +8,24 @@
 
 		<!--Profile VIEW-->
 		<script id="profileView" type="text/view">
-			<!-- Error messages will be inserted below -->
-			<div id="errorMessageAnchor"></div>
+
+			<div id="navbar">
+				<div id="navbarCenter">
+					<div class="navbarButton"><p id="navBarProfile">Profile</p></div>
+					<div class="navbarButton"><p id="navBarHome">Home</p></div>
+					<div class="navbarButton"><p id="navBarBrowse">Browse</p></div>
+				</div>
+			</div>
 
 			<div id="profileGrid" class="grid">
+
 				<div id="profilePic">
 					<img src="Images/Arnold.jpg" alt="Arnold" width=150 height=150/>
 				</div>
 
 				<div id="settings">
 					<input type="button" value="log out" onClick="signOutUser(); return false;">
+					<input type="button" value="magic button" onClick="test();"/>
 				</div>
 
 				<div id="wall">
@@ -65,22 +73,13 @@
 					</form>
 				</div>
 				<!------------------------------------------------->
-
-				<!-- Error messages will be inserted below -->
-				<div id="errorMessageAnchor"></div>
-			</div>
-		</script>
-
-		<!-- Error message template -->
-		<script id="errorMessageHTML" type="text/view">
-			<div id="errorMessage">
-				<p id="errorMessageParagraph"></p>
 			</div>
 		</script>
 
 	</head>
 
   <body>
+		<div id="errorMessage"><p id="errorMessageParagraph"></p></div>
 
 		<!-- HTML will be inserted below -->
 		<div id="content"></div>
