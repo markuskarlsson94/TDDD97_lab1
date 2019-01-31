@@ -1,9 +1,7 @@
 window.onload = function() {
   if (userLoggedIn()) {
-    alert("user logeed in");
     loadProfile();
   } else {
-    alert("uder not signed in");
     loadWelcome();
   }
 }
