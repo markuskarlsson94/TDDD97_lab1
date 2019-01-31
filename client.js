@@ -37,11 +37,7 @@ function userLoggedIn() {
   }
 }
 
-function validateRegisterForm() {
-  //var form = document.getElementById("registerForm");
-
-  //var pass1 = document.getElementById("psw1").value;
-  //var pass2 = document.getElementById("psw2").value;
+function validateRegisterForm(form) {
   var pass1 = document.getElementById("registerPass1").value;
   var pass2 = document.getElementById("registerPass2").value;
 
@@ -60,13 +56,19 @@ function validateRegisterForm() {
 }
 
 function signInUser(form) {
-  var email = form.elements["loginEmail"].value;
-  var pass = form.elements["loginPassword"].value;
+  var formId = form.id;
 
-  //alert(email);
-  //alert(pass);
+  if (formId == "loginForm") {
+    alert("login");
+    var email = form.elements["loginEmail"].value;
+    var pass = form.elements["loginPassword"].value;
+  } else if (formId == "registerForm") {
+    alert("register");
+    var email = form.elements["registerEmail"].value;
+    var pass = form.elements["registerPass1"].value;
+  }
+
   var obj = serverstub.signIn(email, pass);
-  //alert(JSON.stringify(obj));
 
   if (obj.success == false) {
     displayErrorMessage(obj.message);
@@ -83,7 +85,6 @@ function signOutUser() {
   var obj = serverstub.signOut(token);
 
   if (obj.success == false) {
-    //alert(obj.message);
     displayErrorMessage(obj.message);
   } else {
     localStorage.removeItem("token");
@@ -92,7 +93,6 @@ function signOutUser() {
 }
 
 function registerUser(form) {
-
   var user = {email: form.elements["registerEmail"].value, password: form.elements["registerPass1"].value,
               firstname: form.elements["registerFirstName"].value, familyname: form.elements["registerFamilyName"].value,
               gender: form.elements["registerGender"].value, city: form.elements["registerCity"].value,
@@ -103,10 +103,8 @@ function registerUser(form) {
   if (obj.success == false) {
     displayErrorMessage(obj.message);
   } else {
-    serverstub.signIn();
-    alert("h");
+    signInUser(form);
   }
-  //alert(JSON.stringify(obj));
 }
 
 function displayErrorMessage(message) {
