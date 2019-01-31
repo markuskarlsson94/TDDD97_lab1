@@ -1,7 +1,9 @@
 window.onload = function() {
   if (userLoggedIn()) {
+    alert("user logeed in");
     loadProfile();
   } else {
+    alert("uder not signed in");
     loadWelcome();
   }
 }
@@ -29,12 +31,10 @@ function logOut() {
 }
 
 function userLoggedIn() {
-  var val = localStorage.getItem("loggedIn");
-  if (val == "true") {
-    return true;
-  } else {
+  if (localStorage.getItem("token") === null ) {
     return false;
   }
+  return true;
 }
 
 function validateRegisterForm(form) {
@@ -59,11 +59,9 @@ function signInUser(form) {
   var formId = form.id;
 
   if (formId == "loginForm") {
-    alert("login");
     var email = form.elements["loginEmail"].value;
     var pass = form.elements["loginPassword"].value;
   } else if (formId == "registerForm") {
-    alert("register");
     var email = form.elements["registerEmail"].value;
     var pass = form.elements["registerPass1"].value;
   }
