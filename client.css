@@ -16,7 +16,7 @@
 	padding-top: 100px;
 
 	grid-template-columns: 170px 400px;
-	grid-template-rows: 170px 200px 200px 20px;
+	grid-template-rows: 170px 200px 200px;
 	grid-template-areas: "a b"
 											 "c b"
 											 "c b";
@@ -122,4 +122,8 @@ p {
 #wall {
 	grid-area: b;
 	padding: 10px;
+}
+
+#profileview #errorMessageAnchor {
+	background-color: green;
 }

@@ -4,16 +4,20 @@
 		<title>Twidder!</title>
     <link rel="stylesheet" href="client.css">
 		<script type="text/javascript" src=client.js></script>
+		<script type="text/javascript" src=serverstub.js></script>
 
 		<!--Profile VIEW-->
 		<script id="profileView" type="text/view">
+			<!-- Error messages will be inserted below -->
+			<div id="errorMessageAnchor"></div>
+
 			<div id="profileGrid" class="grid">
 				<div id="profilePic">
 					<img src="Images/Arnold.jpg" alt="Arnold" width=150 height=150/>
 				</div>
 
 				<div id="settings">
-					<input type="button" value="log out" onClick="logOut()">
+					<input type="button" value="log out" onClick="signOutUser(); return false;">
 				</div>
 
 				<div id="wall">
@@ -32,9 +36,9 @@
 
 				<!--LOGIN---------------------------------------->
 				<div class="form" id="login">
-					<form action="" onSubmit="logIn()">
-							<label>Email: <input type="email" name="username" value="email@mail.com" required></label>
-							<label>Password: <input type="password" name="password" value="password" required></label>
+					<form action="" onSubmit="signInUser(this); return false;">
+							<label>Email: <input type="email" id="loginEmail" value="m@a.com" required></label>
+							<label>Password: <input type="password" id="loginPassword" value="aaaaaaaa" required></label>
 							<input class="submit" type="submit" value="Login">
 					</form>
 				</div>
@@ -42,9 +46,9 @@
 
 				<!--REGISTER--------------------------------------->
 				<div class=form id="register">
-					<form id="registerForm" action="" onSubmit="return validateRegisterForm()">
-						<label>First name: <input type="text" id="registerFirstname" value="namn" required></label>
-						<label>Last name: <input type="text" id="registerLastname" value="namnsson" required></label>
+					<form id="registerForm" action="" onSubmit="validateRegisterForm(); registerUser(this); return false;">
+						<label>First name: <input type="text" id="registerFirstName" value="namn" required></label>
+						<label>Last name: <input type="text" id="registerFamilyName" value="namnsson" required></label>
 						<label>Gender:
 							<select id="registerGender" required>
 								<option value="male">Male</option>

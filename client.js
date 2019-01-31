@@ -57,24 +57,56 @@ function validateRegisterForm() {
   }
 
   hideErrorMessage();
-  //return false;
+}
 
-  //After validation is complete, register users
+function signInUser(form) {
+  var email = form.elements["loginEmail"].value;
+  var pass = form.elements["loginPassword"].value;
 
-  var user = new object();
-  user.email = document.getElementById("registerEmail").stringify;
-  user.password = document.getElementById("registerPass1").stringify;
-  user.firstname = document.getElementById("registerFirstname").stringify;
-  user.familyname = document.getElementById("registerLastname").stringify;
-  user.gender = document.getElementById("registerGender").stringify;
-  user.city = document.getElementById("registerCity").stringify;
-  user.country = document.getElementById("registerCountry").stringify;
+  //alert(email);
+  //alert(pass);
+  var obj = serverstub.signIn(email, pass);
+  //alert(JSON.stringify(obj));
 
-  alert("hejsan");
-  var result = serverstub.signUp(user);
-  alert(result.message.value);
+  if (obj.success == false) {
+    displayErrorMessage(obj.message);
+  }
+  else {
+    hideErrorMessage();
+    loadProfile();
+    localStorage.setItem("token", obj.data);
+  }
+}
 
-  return false;
+function signOutUser() {
+  var token = localStorage.getItem("token");
+  var obj = serverstub.signOut(token);
+
+  if (obj.success == false) {
+    //alert(obj.message);
+    displayErrorMessage(obj.message);
+  } else {
+    localStorage.removeItem("token");
+    loadWelcome();
+  }
+}
+
+function registerUser(form) {
+
+  var user = {email: form.elements["registerEmail"].value, password: form.elements["registerPass1"].value,
+              firstname: form.elements["registerFirstName"].value, familyname: form.elements["registerFamilyName"].value,
+              gender: form.elements["registerGender"].value, city: form.elements["registerCity"].value,
+              country: form.elements["registerCountry"].value};
+
+  var obj = serverstub.signUp(user);
+
+  if (obj.success == false) {
+    displayErrorMessage(obj.message);
+  } else {
+    serverstub.signIn();
+    alert("h");
+  }
+  //alert(JSON.stringify(obj));
 }
 
 function displayErrorMessage(message) {
