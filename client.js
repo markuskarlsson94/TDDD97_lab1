@@ -1,6 +1,6 @@
 window.onload = function() {
   if (userLoggedIn()) {
-    loadProfile();
+    loadHome();
   } else {
     loadWelcome();
   }
@@ -8,25 +8,40 @@ window.onload = function() {
   hideErrorMessage();
 }
 
-function loadProfile() {
-  var html = document.getElementById("profileView");
-  var cont = document.getElementById("content");
-  cont.innerHTML=html.innerHTML;
-
-  hideErrorMessage();
+function insertHTML(source_id, dest_id) {
+  //Will paste the innerHTML of source_id into the innerHTML of dest_id
+  var source = document.getElementById(source_id);
+  var dest = document.getElementById(dest_id);
+  dest.innerHTML = source.innerHTML;
 }
 
 function loadWelcome() {
-  var html = document.getElementById("welcomeView");
-  var cont = document.getElementById("content");
-  cont.innerHTML=html.innerHTML;
+  insertHTML("welcomeView", "content");
+  hideErrorMessage();
+}
 
+function loadHome() {
+  insertHTML("navbarView", "content");
+  insertHTML("homeView", "loggedInContent");
+  hideErrorMessage();
+}
+
+function loadBrowse() {
+  insertHTML("navbarView", "content");
+  insertHTML("browseView", "loggedInContent");
+  hideErrorMessage();
+}
+
+function loadAccount() {
+  insertHTML("navbarView", "content");
+  insertHTML("accountView", "loggedInContent");
   hideErrorMessage();
 }
 
 function logIn() {
   localStorage.setItem("loggedIn","true");
-  loadProfile();
+  //loadProfile();
+  loadHome();
 }
 
 function logOut() {
@@ -77,7 +92,7 @@ function signInUser(form) {
   }
   else {
     hideErrorMessage();
-    loadProfile();
+    loadHome();
     localStorage.setItem("token", obj.data);
   }
 }
