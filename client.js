@@ -23,6 +23,7 @@ function loadWelcome() {
 function loadHome() {
   insertHTML("navbarView", "content");
   insertHTML("homeView", "loggedInContent");
+  userLoadMessages();
   hideErrorMessage();
 }
 
@@ -76,7 +77,7 @@ function validatePasswordLength(form) {
     var pass2 = document.getElementById("accountNewPassword").value;
   }
 
-  if (pass1.length < 8) {
+  if (pass1.length < 8 || pass2.length <8) {
     displayErrorMessage("The chosen password is too short");
     return false;
   }
@@ -102,8 +103,8 @@ function signInUser(form) {
   }
   else {
     hideErrorMessage();
-    loadHome();
     localStorage.setItem("token", obj.data);
+    loadHome();
   }
 }
 
@@ -180,8 +181,6 @@ function displayMessage(message) {
 }
 
 function hideErrorMessage() {
-    //var anchor = document.getElementById("errorMessageAnchor");
-    //anchor.innerHTML = "";
     var error = document.getElementById("errorMessage");
     error.style.visibility = "hidden";
 }
@@ -192,4 +191,29 @@ function getNameByToken(token) {
   var familyname = obj.data.familyname;
   var fullname = firstname + " " + familyname;
   return fullname;
+}
+
+function userPostMessageSelf(message) {
+  var token = localStorage.getItem("token");
+  var email = serverstub.getUserDataByToken(token).data.email;
+  serverstub.postMessage(token, message, email);
+}
+
+function userLoadMessages() {
+  var token = localStorage.getItem("token");
+  var messageArray = serverstub.getUserMessagesByToken(token).data;
+  var length = messageArray.length;
+  //alert(JSON.stringify(messages));
+
+  var anchor = document.getElementById("wall");
+  anchor.innerHTML = "";
+
+  for (var i=length-1; i>=0; i--)
+  {
+    var sender = messageArray[i].writer;
+    var message = messageArray[i].content;
+    //alert(sender + " said: " + message);
+    //var html = document.getElementById("wallMessage").innerHTML;
+    anchor.innerHTML += '<div class="wallMessageDiv"><p class="wallMessageSender">' + sender + ':' + '</p>' + '<p class="wallMessageContent">' + message + '</p>' + '</div>';
+  }
 }

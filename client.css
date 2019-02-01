@@ -123,6 +123,7 @@ p {
 
 #wall {
 	grid-area: b;
+	background-color: white;
 }
 
 #navbar {
@@ -148,6 +149,7 @@ p {
 
 .navbarButton:hover {
 	background-color: #1662b7;
+	cursor: pointer;
 }
 
 #navbarCenter {
@@ -163,10 +165,13 @@ p {
 	font-weight: bold;
 }
 
-#accountDiv > .wrapper {
+.centeredWrapper {
+	margin: auto;
+}
+
+#accountDiv > .centeredWrapper {
 	width: 250px;
 	height: 200px;
-	margin: auto;
 	padding-top: 25px;
 }
 
@@ -191,9 +196,38 @@ p {
 	color: white;
 	font-family: "Arial";
 	font-weight: bold;
+	font-size: 12px;
+}
+
+#browseDiv {
+	width: 600px;
+	height: 400px;
+	margin: auto;
 }
 
 .module {
 	background-color: #2286f4;
 	border-radius: 4px;
+}
+
+.wallMessageDiv {
+	width: 420px;
+	background-color: #2286f4;
+	border-radius: 4px;
+	margin-bottom: 10px
+}
+
+.wallMessageSender {
+	display: table-cell;
+	font-size: 11px;
+	padding: 5px;
+	font-weight: bold;
+}
+
+.wallMessageContent {
+	margin-top: 0px;
+	margin-left: 5px;
+	margin-bottom: 0px;
+	padding-right: 5px;
+	padding-bottom: 5px;
 }
