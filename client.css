@@ -115,7 +115,7 @@ p {
 	border-radius: 14px;
 }
 
-#settings {
+#homeUserInfo {
 	grid-area: c;
 	height: 200px;
 	padding: 10px;
@@ -230,4 +230,22 @@ p {
 	margin-bottom: 0px;
 	padding-right: 5px;
 	padding-bottom: 5px;
+}
+
+#homeUserInfo > p {
+	margin-top: 0px;
+	margin-bottom: 5px;
+}
+
+#homeFullName {
+	font-weight: bold;
+}
+
+#homeMessageText {
+	width: 420px;
+	box-sizing: border-box;
+}
+
+#homeWallMessages > input {
+	float: left;
 }

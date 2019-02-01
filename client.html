@@ -15,13 +15,26 @@
 					<img src="Images/Arnold.jpg" alt="Arnold" width=150 height=150/>
 				</div>
 
-				<div id="settings" class="module">
+				<div id="homeUserInfo" class="module">
+					<p id="homeFullName"></p>
+					<p id="homeEmail"></p>
+					<p id="homeGender"></p>
+					<p id="homeCountry"></p>
+					<p id="homeCity"></p>
+
 					<input type="button" value="Post message" onClick="userPostMessageSelf('Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sit natus error numquam nesciunt culpa ab voluptas porro quasi rerum sed, ipsam illo vel a dolorum, consequatur eaque veniam? Aut veniam dignissimos praesentium ipsa quo consequatur quisquam itaque modi odio non, provident officia, sint aliquid doloremque magni id rem dolor, necessitatibus impedit vitae quaerat voluptas earum rerum. Adipisci aut aspernatur odio eum, ducimus! Quibusdam, id? Dolores amet natus culpa, quidem, dolorum ut inventore omnis necessitatibus cumque dicta magnam reiciendis ipsum ducimus ratione aspernatur repellat error qui pariatur corrupti labore deserunt consequuntur nihil beatae? Expedita quibusdam, veritatis ex libero quis minima illo.');"/>
 					<input type="button" value="Update Wall" onClick="userLoadMessages();"/>
 				</div>
 
 				<div id="wall" class="module">
-					<!--Messages will be posted here-->
+					<!--Messages will be posted below-->
+					<div id="homeWallMessages"></div>
+
+						<form action="" onSubmit="alert('hej'); return false;">
+							<input id="homeMessageText" type="text"/>
+							<input type="submit" value="Send"/>
+						</form>
+						<input type="button" value="Update wall" onClick="userLoadMessages(); return false;"/>
 				</div>
 			</div>
 		</script>

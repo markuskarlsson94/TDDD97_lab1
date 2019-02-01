@@ -15,6 +15,12 @@ function insertHTML(source_id, dest_id) {
   dest.innerHTML = source.innerHTML;
 }
 
+function insertString(string, dest_id) {
+  //Will paste the given string into the innerHTML of dest_id
+  var dest = document.getElementById(dest_id);
+  dest.innerHTML = string;
+}
+
 function loadWelcome() {
   insertHTML("welcomeView", "content");
   hideErrorMessage();
@@ -23,6 +29,9 @@ function loadWelcome() {
 function loadHome() {
   insertHTML("navbarView", "content");
   insertHTML("homeView", "loggedInContent");
+  //var fullname = userGetName();
+  //insertString(fullname, "homeFullName");
+  userLoadInfo();
   userLoadMessages();
   hideErrorMessage();
 }
@@ -193,6 +202,15 @@ function getNameByToken(token) {
   return fullname;
 }
 
+function userGetName() {
+  var token = localStorage.getItem("token")
+  var obj = serverstub.getUserDataByToken(token);
+  var firstname = obj.data.firstname;
+  var familyname = obj.data.familyname;
+  var fullname = firstname + " " + familyname;
+  return fullname;
+}
+
 function userPostMessageSelf(message) {
   var token = localStorage.getItem("token");
   var email = serverstub.getUserDataByToken(token).data.email;
@@ -205,7 +223,7 @@ function userLoadMessages() {
   var length = messageArray.length;
   //alert(JSON.stringify(messages));
 
-  var anchor = document.getElementById("wall");
+  var anchor = document.getElementById("homeWallMessages");
   anchor.innerHTML = "";
 
   for (var i=length-1; i>=0; i--)
@@ -216,4 +234,26 @@ function userLoadMessages() {
     //var html = document.getElementById("wallMessage").innerHTML;
     anchor.innerHTML += '<div class="wallMessageDiv"><p class="wallMessageSender">' + sender + ':' + '</p>' + '<p class="wallMessageContent">' + message + '</p>' + '</div>';
   }
+}
+
+function userLoadInfo() {
+  var token = localStorage.getItem("token")
+  var obj = serverstub.getUserDataByToken(token);
+  var firstname = obj.data.firstname;
+  var familyname = obj.data.familyname;
+  var fullname = firstname + " " + familyname;
+
+  insertString(fullname, "homeFullName");
+
+  var email = obj.data.email;
+  insertString(email, "homeEmail");
+
+  var gender = obj.data.gender;
+  insertString(gender, "homeGender");
+
+  var country = obj.data.country;
+  insertString(country, "homeCountry");
+
+  var city = obj.data.city;
+  insertString(city, "homeCity");
 }
