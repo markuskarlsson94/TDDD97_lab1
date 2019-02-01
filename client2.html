@@ -8,22 +8,41 @@
 
 		<!--HOME VIEW-->
 		<script id="homeView" type="text/view">
-			<div id="userInfo" class="module">
-				<img src="Images/Arnold.jpg" alt="Arnold" width=150 height=150/>
-				<p id="homeFullName"></p>
-				<p id="homeEmail"></p>
-				<p id="homeGender"></p>
-				<p id="homeCountry"></p>
-				<p id="homeCity"></p>
-			</div>
 
-			<div id="wall">
-				<div id="homeWallMessages"><!--Messages will be posted here--></div>
-				<form id="homeMessageForm" action="" onSubmit="userPostMessage(this); userLoadMessages(); return false;">
-					<textarea name="" id="homeMessageField" style="resize:vertical" required></textarea>
-					<input type="submit" value="Send"/>
-					<input type="button" value="Update wall" onClick="userLoadMessages(); return false;"/>
-				</form>
+			<div id="profileGrid" class="grid">
+
+				<div id="profilePic" class="module">
+					<img src="Images/Arnold.jpg" alt="Arnold" width=150 height=150/>
+
+					<p id="homeFullName"></p>
+					<p id="homeEmail"></p>
+					<p id="homeGender"></p>
+					<p id="homeCountry"></p>
+					<p id="homeCity"></p>
+				</div>
+
+				<!--<div id="homeUserInfo" class="module">
+					<p id="homeFullName"></p>
+					<p id="homeEmail"></p>
+					<p id="homeGender"></p>
+					<p id="homeCountry"></p>
+					<p id="homeCity"></p>
+				</div>-->
+
+				<div id="wall" class="module">
+					<div class="wrapper">
+						<!--Messages will be posted below-->
+						<div id="homeWallMessages"></div>
+
+						<form id="homeMessageForm" action="" onSubmit="userPostMessage(this); userLoadMessages(); return false;">
+							<!--<input id="homeMessageText" type="text"/>-->
+							<textarea name="" id="homeMessageField" style="resize:vertical" required></textarea>
+							<input type="submit" value="Send"/>
+							<input type="button" value="Update wall" onClick="userLoadMessages(); return false;"/>
+						</form>
+
+					</div>
+				</div>
 			</div>
 		</script>
 
@@ -93,7 +112,7 @@
 
 		<!-- ACCOUNT VIEW -->
 		<script id="accountView" type="text/view">
-			<div id="accountDiv" class="module centeredWrapper">
+			<div id="accountDiv" class="module">
 				<div class="centeredWrapper">
 					<form action="" id="accountForm" onSubmit="userTryChangePassword(this); return false;">
 						<label>Old password:<input type="password" id="accountOldPassword" required/></label>
@@ -114,13 +133,11 @@
 	</script>
 
   <body>
-		<div class="wrapper">
-			<!-- Error messages will be inserted below -->
-			<div id="errorMessage"><p id="errorMessageParagraph"></p></div>
+		<!-- Error messages will be inserted below -->
+		<div id="errorMessage"><p id="errorMessageParagraph"></p></div>
 
-			<!-- Main content will be inserted below -->
-			<div id="content"></div>
-		</div>
+		<!-- Main content will be inserted below -->
+		<div id="content"></div>
 
 	</body>
 </html>

@@ -163,17 +163,12 @@ function userTryChangePassword(form) {
     if (obj.success == false) {
       displayErrorMessage(obj.message);
     } else {
-      //alert("df");
-      //hideErrorMessage();
       displayMessage("Password successfully changed!");
     }
   }
 }
 
 function displayErrorMessage(message) {
-  //var anchor = document.getElementById("errorMessageAnchorLoggedIn");
-  //var errorHTML = document.getElementById("errorMessageHTML");
-  //anchor.innerHTML = errorHTML.innerHTML;
   var error = document.getElementById("errorMessage");
   error.style.visibility = "visible";
   error.style.backgroundColor = "#db2b1a";
@@ -217,6 +212,16 @@ function userPostMessageSelf(message) {
   serverstub.postMessage(token, message, email);
 }
 
+function userPostMessage(form) {
+  var token = localStorage.getItem("token");
+  var email = serverstub.getUserDataByToken(token).data.email;
+  var message = form.elements["homeMessageField"].value;
+
+
+  form.elements["homeMessageField"].value = "";
+  serverstub.postMessage(token, message, email);
+}
+
 function userLoadMessages() {
   var token = localStorage.getItem("token");
   var messageArray = serverstub.getUserMessagesByToken(token).data;
@@ -226,15 +231,16 @@ function userLoadMessages() {
   var anchor = document.getElementById("homeWallMessages");
   anchor.innerHTML = "";
 
-  for (var i=length-1; i>=0; i--)
-  {
-    var sender = messageArray[i].writer;
-    var message = messageArray[i].content;
-    //alert(sender + " said: " + message);
-    //var html = document.getElementById("wallMessage").innerHTML;
-    anchor.innerHTML += '<div class="wallMessageDiv"><p class="wallMessageSender">' + sender + ':' + '</p>' + '<p class="wallMessageContent">' + message + '</p>' + '</div>';
+  if (length > 0) {
+      for (var i=length-1; i>=0; i--) {
+        var sender = messageArray[i].writer;
+        var message = messageArray[i].content;
+        anchor.innerHTML += '<div class="wallMessageDiv"><p class="wallMessageSender">' + sender + ':' + '</p>' + '<p class="wallMessageContent">' + message + '</p>' + '</div>';
+      }
+    } else {
+        anchor.innerHTML += '<div class="wallEmptyMessageDiv"><p>No messages</p></div>';
+    }
   }
-}
 
 function userLoadInfo() {
   var token = localStorage.getItem("token")
