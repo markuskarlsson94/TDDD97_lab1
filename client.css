@@ -48,6 +48,7 @@ p {
 	margin-bottom: 2px;
 	color: white;
 	font-family: "Arial";
+	font-weight: bold;
 }
 
 .form input, select {
@@ -160,4 +161,39 @@ p {
   vertical-align: middle;
   text-align: center;
 	font-weight: bold;
+}
+
+#accountDiv > .wrapper {
+	width: 250px;
+	height: 200px;
+	margin: auto;
+	padding-top: 25px;
+}
+
+#accountDiv {
+	width: 300px;
+	height: 400px;
+	margin: auto;
+}
+
+#accountDiv input {
+	width: 250px;
+
+	box-sizing: border-box;
+	margin-bottom: 10px;
+}
+
+#accountDiv form {
+	margin-bottom: 25px;
+}
+
+#accountDiv label {
+	color: white;
+	font-family: "Arial";
+	font-weight: bold;
+}
+
+.module {
+	background-color: #2286f4;
+	border-radius: 4px;
 }

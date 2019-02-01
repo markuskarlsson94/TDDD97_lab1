@@ -45,22 +45,43 @@ function userLoggedIn() {
   return true;
 }
 
-function validateRegisterForm(form) {
-  var pass1 = document.getElementById("registerPass1").value;
-  var pass2 = document.getElementById("registerPass2").value;
+function validatePassword(form) {
+  var formId = form.id;
+  if (formId == "registerForm") {
+    var pass1 = document.getElementById("registerPass1").value;
+    var pass2 = document.getElementById("registerPass2").value;
+  } else if (formId == "accountForm") {
+    var pass1 = document.getElementById("accountOldPassword").value;
+    var pass2 = document.getElementById("accountNewPassword").value;
+  }
 
-  if (pass1.length < 8)
-  {
+  if (pass1.length < 8) {
     displayErrorMessage("The chosen password is too short");
     return false;
-  }
-  else if (pass1 != pass2)
-  {
+  } else if (pass1 != pass2) {
     displayErrorMessage("The passwords do not match");
     return false;
   }
 
-  hideErrorMessage();
+  return true;
+}
+
+function validatePasswordLength(form) {
+  var formId = form.id;
+  if (formId == "registerForm") {
+    var pass1 = document.getElementById("registerPass1").value;
+    var pass2 = document.getElementById("registerPass2").value;
+  } else if (formId == "accountForm") {
+    var pass1 = document.getElementById("accountOldPassword").value;
+    var pass2 = document.getElementById("accountNewPassword").value;
+  }
+
+  if (pass1.length < 8) {
+    displayErrorMessage("The chosen password is too short");
+    return false;
+  }
+
+  return true;
 }
 
 function signInUser(form) {
@@ -109,7 +130,33 @@ function registerUser(form) {
   if (obj.success == false) {
     displayErrorMessage(obj.message);
   } else {
-    signInUser(form);
+    //signInUser(form);
+    displayMessage("Succesfully registered user " + form.elements["registerEmail"].value);
+  }
+}
+
+function userTryRegister(form) {
+  var valid = validatePassword(form);
+  if (valid == true) {
+    registerUser(form);
+  }
+}
+
+function userTryChangePassword(form) {
+  var valid = validatePasswordLength(form);
+  if (valid == true) {
+    var token = localStorage.getItem("token");
+    var pass1 = document.getElementById("accountOldPassword").value;
+    var pass2 = document.getElementById("accountNewPassword").value;
+    var obj = serverstub.changePassword(token, pass1, pass2);
+
+    if (obj.success == false) {
+      displayErrorMessage(obj.message);
+    } else {
+      //alert("df");
+      //hideErrorMessage();
+      displayMessage("Password successfully changed!");
+    }
   }
 }
 
@@ -119,6 +166,15 @@ function displayErrorMessage(message) {
   //anchor.innerHTML = errorHTML.innerHTML;
   var error = document.getElementById("errorMessage");
   error.style.visibility = "visible";
+  error.style.backgroundColor = "#db2b1a";
+  var p = document.getElementById("errorMessageParagraph"); //This has to be after the first paste because it cant find the id if it's inside a script tag
+  p.innerHTML=message;
+}
+
+function displayMessage(message) {
+  var error = document.getElementById("errorMessage");
+  error.style.visibility = "visible";
+  error.style.backgroundColor = "green";
   var p = document.getElementById("errorMessageParagraph"); //This has to be after the first paste because it cant find the id if it's inside a script tag
   p.innerHTML=message;
 }
@@ -128,13 +184,6 @@ function hideErrorMessage() {
     //anchor.innerHTML = "";
     var error = document.getElementById("errorMessage");
     error.style.visibility = "hidden";
-}
-
-function test() {
-  var token = localStorage.getItem("token");
-  var div = document.getElementById("errorMessage");
-  div.style.visibility = "hidden";
-  alert(getNameByToken(token));
 }
 
 function getNameByToken(token) {

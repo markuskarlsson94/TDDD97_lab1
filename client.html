@@ -16,7 +16,6 @@
 				</div>
 
 				<div id="settings">
-					<input type="button" value="log out" onClick="signOutUser(); return false;">
 					<input type="button" value="magic button" onClick="test();"/>
 				</div>
 
@@ -46,7 +45,8 @@
 
 				<!--REGISTER--------------------------------------->
 				<div class=form id="register">
-					<form id="registerForm" action="" onSubmit="validateRegisterForm(); registerUser(this); return false;">
+					<!--<form id="registerForm" action="" onSubmit="validatePassword(); registerUser(this); return false;">-->
+					<form id="registerForm" action="" onSubmit="userTryRegister(this); return false;">
 						<label>First name: <input type="text" id="registerFirstName" value="namn" required></label>
 						<label>Last name: <input type="text" id="registerFamilyName" value="namnsson" required></label>
 						<label>Gender:
@@ -89,7 +89,16 @@
 
 		<!-- ACCOUNT VIEW -->
 		<script id="accountView" type="text/view">
-			<h1>Account stuff</h1>
+			<div id="accountDiv" class="module">
+				<div class="wrapper">
+					<form action="" id="accountForm" onSubmit="userTryChangePassword(this); return false;">
+						<label>Old password:<input type="password" id="accountOldPassword" required/></label>
+						<label>New password:<input type="password" id="accountNewPassword" required/></label>
+						<input type="submit" value="Change Password"/>
+					</form>
+					<input type="button" value="Log Out" onClick="signOutUser();"/>
+				</div>
+			</div>
 		</script>
 	</head>
 
