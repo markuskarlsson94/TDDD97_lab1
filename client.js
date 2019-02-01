@@ -27,10 +27,9 @@ function loadWelcome() {
 }
 
 function loadHome() {
+  setDisplayedUser(userGetEmail()); //Make sure that logged in user's view is loaded
   insertHTML("navbarView", "content");
-  insertHTML("homeView", "loggedInContent");
-  //var fullname = userGetName();
-  //insertString(fullname, "homeFullName");
+  insertHTML("profileView", "loggedInContent");
   userLoadInfo();
   userLoadMessages();
   hideErrorMessage();
@@ -214,7 +213,8 @@ function userPostMessageSelf(message) {
 
 function userPostMessage(form) {
   var token = localStorage.getItem("token");
-  var email = serverstub.getUserDataByToken(token).data.email;
+  //var email = serverstub.getUserDataByToken(token).data.email;
+  var email = getDisplayedUser();
   var message = form.elements["homeMessageField"].value;
 
 
@@ -224,7 +224,8 @@ function userPostMessage(form) {
 
 function userLoadMessages() {
   var token = localStorage.getItem("token");
-  var messageArray = serverstub.getUserMessagesByToken(token).data;
+  var email = getDisplayedUser();
+  var messageArray = serverstub.getUserMessagesByEmail(token, email).data;
   var length = messageArray.length;
   //alert(JSON.stringify(messages));
 
@@ -238,13 +239,14 @@ function userLoadMessages() {
         anchor.innerHTML += '<div class="wallMessageDiv"><p class="wallMessageSender">' + sender + ':' + '</p>' + '<p class="wallMessageContent">' + message + '</p>' + '</div>';
       }
     } else {
-        anchor.innerHTML += '<div class="wallEmptyMessageDiv"><p>No messages</p></div>';
+        anchor.innerHTML += '<div class="wallEmptyMessageDiv"><p>No messages :(</p></div>';
     }
   }
 
 function userLoadInfo() {
-  var token = localStorage.getItem("token")
-  var obj = serverstub.getUserDataByToken(token);
+  var token = localStorage.getItem("token");
+  var email = getDisplayedUser();
+  var obj = serverstub.getUserDataByEmail(token, email);
   var firstname = obj.data.firstname;
   var familyname = obj.data.familyname;
   var fullname = firstname + " " + familyname;
@@ -262,4 +264,35 @@ function userLoadInfo() {
 
   var city = obj.data.city;
   insertString(city, "homeCity");
+}
+
+function userGetEmail() {
+  var token = localStorage.getItem("token")
+  var obj = serverstub.getUserDataByToken(token);
+  var email = obj.data.email;
+  return email;
+}
+
+function userFind(form) {
+  var token = localStorage.getItem("token");
+  var email = form.elements["browseEmail"].value;
+  var obj = serverstub.getUserDataByEmail(token, email);
+
+  if (obj.success) {
+    setDisplayedUser(email);
+    insertHTML("profileView", "browseProfileAnchor");
+    userLoadInfo();
+    userLoadMessages();
+    hideErrorMessage();
+  } else {
+    displayErrorMessage(obj.message);
+  }
+}
+
+function setDisplayedUser(email) {
+  localStorage.setItem("displayedUser", email);
+}
+
+function getDisplayedUser(email) {
+  return localStorage.getItem("displayedUser");
 }

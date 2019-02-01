@@ -6,8 +6,8 @@
 		<script type="text/javascript" src=client.js></script>
 		<script type="text/javascript" src=serverstub.js></script>
 
-		<!--HOME VIEW-->
-		<script id="homeView" type="text/view">
+		<!--PROFILE VIEW-->
+		<script id="profileView" type="text/view">
 			<div id="userInfo" class="module">
 				<img src="Images/Arnold.jpg" alt="Arnold" width=150 height=150/>
 				<p id="homeFullName"></p>
@@ -86,9 +86,11 @@
 
 		<!-- BROWSE VIEW -->
 		<script id="browseView" type="text/view">
-			<div id="browseDiv">
-				<h1>Browse lol</h1>
-			</div>
+			<form action="" id="browseForm" onSubmit="userFind(this); return false;">
+				<input id="browseEmail" type="text" value="user email"/>
+				<input type="submit" value="search"/>
+			</form>
+			<div id="browseProfileAnchor"></div>
 		</script>
 
 		<!-- ACCOUNT VIEW -->

@@ -266,7 +266,7 @@ p {
 }
 
 #wall input[type="submit"], #wall input[type="button"] {
-	width: 209px;
+	width: 2px;
 }
 
 #wall input[type="button"] {
@@ -278,4 +278,8 @@ textarea {
 	min-height: 50px;
 	height: 50px;
 	box-sizing: border-box;
+}
+
+#browseProfileAnchor {
+	margin-top: 10px;
 }
