@@ -10,11 +10,11 @@
 		<script id="profileView" type="text/view">
 			<div id="userInfo" class="module">
 				<img src="Images/Arnold.jpg" alt="Arnold" width=150 height=150/>
-				<p id="homeFullName"></p>
-				<p id="homeEmail"></p>
-				<p id="homeGender"></p>
-				<p id="homeCountry"></p>
-				<p id="homeCity"></p>
+				<p id="homeFullName" class="dark"></p>
+				<p id="homeEmail" class="darkGrey"></p>
+				<p id="homeGender" class="darkGrey"></p>
+				<p id="homeCountry" class="darkGrey"></p>
+				<p id="homeCity" class="darkGrey"></p>
 			</div>
 
 			<div id="wall">
@@ -31,22 +31,22 @@
 		<script id="welcomeView" type="text/view">
 			<div id="welcomeGrid" class="grid">
 				<div id="welcome" class="module">
-					<img src="Images/twidder.png" alt="">
+					<img src="Images/twidder2.png" alt="">
 					<p>The only place you get excited when a stranger follows you</p>
 				</div>
 
 				<!--LOGIN---------------------------------------->
-				<div class="form" id="login">
+				<div class="form module" id="login">
 					<form id="loginForm" action="" onSubmit="signInUser(this); return false;">
-							<label>Email: <input type="email" id="loginEmail" value="m@a.com" required></label>
-							<label>Password: <input type="password" id="loginPassword" value="aaaaaaaa" required></label>
+							<label><span class="darkgrey">Email:</span><input type="email" id="loginEmail" value="m@a.com" required></label>
+							<label><span class="darkgrey">Password:</span><input type="password" id="loginPassword" value="aaaaaaaa" required></label>
 							<input class="submit" type="submit" value="Login">
 					</form>
 				</div>
 				<!------------------------------------------------->
 
 				<!--REGISTER--------------------------------------->
-				<div class="form" id="register">
+				<div class="form module" id="register">
 					<!--<form id="registerForm" action="" onSubmit="validatePassword(); registerUser(this); return false;">-->
 					<form id="registerForm" action="" onSubmit="userTryRegister(this); return false;">
 						<label>First name: <input type="text" id="registerFirstName" value="namn" required></label>
@@ -72,11 +72,11 @@
 
 		<!--NAVBAR VIEW, contains navbar and home, browse or account view-->
 		<script id="navbarView" type="text/view">
-			<div id="navbar">
+			<div id="navbar" class="module">
 				<div id="navbarCenter">
-					<div class="navbarButton" onClick="loadHome();"><p id="navbarHome">Home</p></div>
-					<div class="navbarButton" onClick="loadBrowse();"><p id="navbarBrowse">Browse</p></div>
-					<div class="navbarButton" onClick="loadAccount();"><p id="navbarAccount">Account</p></div>
+					<div class="navbarButton" onClick="loadHome();"><p id="navbarHome" class="light">Home</p></div>
+					<div class="navbarButton" onClick="loadBrowse();"><p id="navbarBrowse" class="light">Browse</p></div>
+					<div class="navbarButton" onClick="loadAccount();"><p id="navbarAccount" class="light">Account</p></div>
 				</div>
 			</div>
 
@@ -88,7 +88,7 @@
 		<script id="browseView" type="text/view">
 			<form action="" id="browseForm" onSubmit="userFind(this); return false;">
 				<input id="browseEmail" type="text" value="user email"/>
-				<input type="submit" value="search"/>
+				<input id="browseSubmit" type="submit" value="search"/>
 			</form>
 			<div id="browseProfileAnchor"></div>
 		</script>
@@ -98,8 +98,8 @@
 			<div id="accountDiv" class="module centeredWrapper">
 				<div class="centeredWrapper">
 					<form action="" id="accountForm" onSubmit="userTryChangePassword(this); return false;">
-						<label>Old password:<input type="password" id="accountOldPassword" required/></label>
-						<label>New password:<input type="password" id="accountNewPassword" required/></label>
+						<label><span class="darkGrey">Old password:</span><input type="password" id="accountOldPassword" required/></label>
+						<label><span class="darkGrey">New password:</span><input type="password" id="accountNewPassword" required/></label>
 						<input type="submit" value="Change Password"/>
 					</form>
 					<input type="button" value="Log Out" onClick="signOutUser();"/>
@@ -118,11 +118,10 @@
   <body>
 		<div class="wrapper">
 			<!-- Error messages will be inserted below -->
-			<div id="errorMessage"><p id="errorMessageParagraph"></p></div>
+			<div id="errorMessage" class="module"><p id="errorMessageParagraph"></p></div>
 
 			<!-- Main content will be inserted below -->
 			<div id="content"></div>
 		</div>
-
 	</body>
 </html>

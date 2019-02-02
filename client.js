@@ -170,7 +170,7 @@ function userTryChangePassword(form) {
 function displayErrorMessage(message) {
   var error = document.getElementById("errorMessage");
   error.style.visibility = "visible";
-  error.style.backgroundColor = "#db2b1a";
+  error.style.backgroundColor = "#ce4646";
   var p = document.getElementById("errorMessageParagraph"); //This has to be after the first paste because it cant find the id if it's inside a script tag
   p.innerHTML=message;
 }
@@ -236,12 +236,14 @@ function userLoadMessages() {
       for (var i=length-1; i>=0; i--) {
         var sender = messageArray[i].writer;
         var message = messageArray[i].content;
-        anchor.innerHTML += '<div class="wallMessageDiv"><p class="wallMessageSender">' + sender + ':' + '</p>' + '<p class="wallMessageContent">' + message + '</p>' + '</div>';
+        anchor.innerHTML += '<div class="wallMessageDiv module"><p class="wallMessageSender dark">' + sender + ':' + '</p>' + '<p class="wallMessageContent darkGrey">' + message + '</p>' + '</div>';
       }
     } else {
         anchor.innerHTML += '<div class="wallEmptyMessageDiv"><p>No messages :(</p></div>';
     }
   }
+
+
 
 function userLoadInfo() {
   var token = localStorage.getItem("token");

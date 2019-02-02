@@ -6,21 +6,27 @@ body > .wrapper {
 #userInfo {
 	float: left;
 	width: 170px;
-	margin-right: 10px;
+	margin-right: 20px;
 }
 
 #userInfo > p {
 	margin: 5px;
 }
 
+#homeFullName {
+	margin-bottom: 10px;
+	font-weight: bold;
+	text-align: center;
+}
+
 #userInfo > img {
-	padding: 10px;
-	border-radius: 14px;
+	padding: 10px 10px 0px 10px;
+	--border-radius: 14px;
 }
 
 #wall {
 	float: left;
-	width: 420px;
+	width: 410px;
 	margin-bottom: 200px;
 }
 
@@ -43,13 +49,7 @@ body > .wrapper {
 }
 
 p {
-	color: white;
 	font-family: "Arial";
-}
-
-.grid > div {
-	background-color: #2286f4;
-	border-radius: 4px;
 }
 
 .form {
@@ -60,7 +60,7 @@ p {
 	display: inline-block;
 	float: right;
 	margin-bottom: 2px;
-	color: white;
+	--color: white;
 	font-family: "Arial";
 	font-weight: bold;
 }
@@ -107,8 +107,9 @@ p {
 	margin-top: 60px;
 	height: 30px;
 	width: 600px;
-	background-color: #db2b1a;
-	border-radius: 4px;
+	--background-color: #db2b1a;
+	--border-radius: 4px;
+	background-color: #b25555;
 	display: table;
 	overflow: hidden;
 }
@@ -120,8 +121,6 @@ p {
 	font-weight: bold;
 }
 
-
-
 #homeUserInfo {
 	grid-area: c;
 	height: 200px;
@@ -131,8 +130,9 @@ p {
 #navbar {
 	width: 600px;
 	height: 30px;
-	background-color: #2286f4;
-	border-radius: 4px;
+	--background-color: #2286f4;
+	background-color: #37495d;
+	border-radius: 0px;
 
 	margin: auto;
 	margin-top: 10px;
@@ -150,7 +150,8 @@ p {
 }
 
 .navbarButton:hover {
-	background-color: #1662b7;
+	--background-color: #1662b7;
+	background-color: #2d3642;
 	cursor: pointer;
 }
 
@@ -206,19 +207,43 @@ p {
 }
 
 .module {
-	background-color: #2286f4;
-	border-radius: 4px;
+	--background-color: #efefef;
+	background-color: #f2f2f2;
+	box-shadow: 1px 1px 3px rgba(0,0,0,0.25);
+	--opacity: 1;
+
+}
+
+#loggedInContent {
+	-moz-animation: fadein 0.3s;
+}
+
+@keyframes fadein {
+    from { opacity: 0; }
+
+    to { opacity: 1; }
+}
+
+.dark {
+	--color: #37495d;
+	color: #2d3642;
+}
+
+.darkGrey {
+	color: #515151;
+}
+
+.light {
+	color: #ffffff;
 }
 
 .wallMessageDiv {
-	width: 420px;
-	background-color: #2286f4;
-	border-radius: 4px;
-	margin-bottom: 10px
+	width: 410px;
+	margin-bottom: 15px
 }
 
 .wallEmptyMessageDiv {
-	width: 420px;
+	width: 410px;
 	height: 40px;
 	margin-bottom: 10px;
 	display: table;
@@ -252,10 +277,6 @@ p {
 	margin-bottom: 5px;
 }
 
-#homeFullName {
-	font-weight: bold;
-}
-
 #homeMessageText {
 	width: 420px;
 	box-sizing: border-box;
@@ -266,20 +287,32 @@ p {
 }
 
 #wall input[type="submit"], #wall input[type="button"] {
-	width: 2px;
+	width: 203px;
+	--background-color: red;
+	--border-color: red;
 }
 
 #wall input[type="button"] {
 	float: right;
 }
 
-textarea {
-	width: 420px;
+#homeMessageField {
+	width: 410px;
 	min-height: 50px;
 	height: 50px;
 	box-sizing: border-box;
+	margin-bottom: 4px;
 }
 
 #browseProfileAnchor {
 	margin-top: 10px;
+}
+
+#browseSubmit {
+	width: 100px;
+	float: right;
+}
+
+#browseEmail {
+	width: 475px;
 }
