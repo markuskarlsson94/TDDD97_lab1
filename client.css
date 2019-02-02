@@ -119,6 +119,7 @@ p {
   vertical-align: middle;
   text-align: center;
 	font-weight: bold;
+	color: white;
 }
 
 #homeUserInfo {
@@ -207,14 +208,11 @@ p {
 }
 
 .module {
-	--background-color: #efefef;
 	background-color: #f2f2f2;
-	box-shadow: 1px 1px 3px rgba(0,0,0,0.25);
-	--opacity: 1;
-
+	box-shadow: 1px 1px 5px rgba(0,0,0,0.25);
 }
 
-#loggedInContent {
+#loggedInContent, #welcomeGrid {
 	-moz-animation: fadein 0.3s;
 	-webkit-animation: fadein 0.3s;
 }
@@ -263,6 +261,11 @@ p {
 	font-weight: bold;
 }
 
+.smallBold {
+	font-weight: bold;
+	font-size: 12px;;
+}
+
 .wallMessageSender {
 	display: table-cell;
 	font-size: 12px;
@@ -288,7 +291,7 @@ p {
 	box-sizing: border-box;
 }
 
-#homeWallMessages > input {
+#wallMessages > input {
 	clear: left;
 }
 

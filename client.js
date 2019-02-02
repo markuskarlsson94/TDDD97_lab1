@@ -229,7 +229,7 @@ function userLoadMessages() {
   var length = messageArray.length;
   //alert(JSON.stringify(messages));
 
-  var anchor = document.getElementById("homeWallMessages");
+  var anchor = document.getElementById("wallMessages");
   anchor.innerHTML = "";
 
   if (length > 0) {
