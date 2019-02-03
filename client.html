@@ -8,15 +8,16 @@
 
 		<!--PROFILE VIEW-->
 		<script id="profileView" type="text/view">
-			<!--This code is used for displaying both the logged in user and a user found in the "browse module"-->
+			<!--This code is used for displaying both the logged in user and a user found in the browse module-->
 
 			<div id="userInfo" class="module">
 				<img src="Images/Arnold.jpg" alt="Arnold" width=150 height=150/>
-				<p id="homeFullName" class="dark"></p>
-				<p id="homeEmail" class="darkGrey"></p>
-				<p id="homeGender" class="darkGrey"></p>
-				<p id="homeCountry" class="darkGrey"></p>
-				<p id="homeCity" class="darkGrey"></p>
+				<p id="profileFullName" class="dark"></p>
+				<p id="profileEmail" class="darkGrey"></p>
+				<br/>
+				<p id="profileGender" class="darkGrey"></p>
+				<p id="profileCountry" class="darkGrey"></p>
+				<p id="profileCity" class="darkGrey"></p>
 			</div>
 
 			<div id="wall">
@@ -41,8 +42,8 @@
 				<!--LOGIN---------------------------------------->
 				<div class="form module" id="login">
 					<form id="loginForm" action="" onSubmit="signInUser(this); return false;">
-							<label><span class="darkGrey smallBold">Email:</span><input type="email" id="loginEmail" value="m@a.com" required></label>
-							<label><span class="darkGrey smallBold">Password:</span><input type="password" id="loginPassword" value="aaaaaaaa" required></label>
+							<label><span class="darkGrey small bold">Email:</span><input type="email" id="loginEmail" value="m@a.com" required></label>
+							<label><span class="darkGrey small bold">Password:</span><input type="password" id="loginPassword" value="aaaaaaaa" required></label>
 							<input class="submit" type="submit" value="Login">
 					</form>
 				</div>
@@ -52,20 +53,20 @@
 				<div class="form module" id="register">
 					<!--<form id="registerForm" action="" onSubmit="validatePassword(); registerUser(this); return false;">-->
 					<form id="registerForm" action="" onSubmit="userTryRegister(this); return false;">
-						<label><span class="darkGrey smallBold">First name:</span><input type="text" id="registerFirstName" value="namn" required></label>
-						<label><span class="darkGrey smallBold">Last name:</span><input type="text" id="registerFamilyName" value="namnsson" required></label>
-						<label><span class="darkGrey smallBold">Gender:</span>
+						<label><span class="darkGrey small bold">First name:</span><input type="text" id="registerFirstName" value="namn" required></label>
+						<label><span class="darkGrey small bold">Last name:</span><input type="text" id="registerFamilyName" value="namnsson" required></label>
+						<label><span class="darkGrey small bold">Gender:</span>
 							<select id="registerGender" required>
 								<option value="male">Male</option>
 								<option value="female">Female</option>
 								<option value="other">Other</option>
 							</select>
 						</label>
-						<label><span class="darkGrey smallBold">City:</span><input type="text" id="registerCity" value="a" required></label>
-						<label><span class="darkGrey smallBold">Country:</span><input type="text" id="registerCountry" value="a" required></label>
-						<label><span class="darkGrey smallBold">Email:</span><input type="email" id="registerEmail" value="m@a.com" required></label>
-						<label><span class="darkGrey smallBold">Password:</span><input type="password" id="registerPass1" value="aaaaaaaa" required></label>
-						<label><span class="darkGrey smallBold">Repeat password:</span><input type="password" id="registerPass2" value="aaaaaaaa" required></label>
+						<label><span class="darkGrey small bold">City:</span><input type="text" id="registerCity" value="a" required></label>
+						<label><span class="darkGrey small bold">Country:</span><input type="text" id="registerCountry" value="a" required></label>
+						<label><span class="darkGrey small bold">Email:</span><input type="email" id="registerEmail" value="m@a.com" required></label>
+						<label><span class="darkGrey small bold">Password:</span><input type="password" id="registerPass1" value="aaaaaaaa" required></label>
+						<label><span class="darkGrey small bold">Repeat password:</span><input type="password" id="registerPass2" value="aaaaaaaa" required></label>
 						<input class="submit" type="submit" value="Register" required>
 					</form>
 				</div>
@@ -90,7 +91,7 @@
 		<!-- BROWSE VIEW -->
 		<script id="browseView" type="text/view">
 			<form action="" id="browseForm" onSubmit="userFind(this); return false;">
-				<input id="browseEmail" type="text" value="user email"/>
+				<input id="browseEmail" type="text" value="email"/>
 				<input id="browseSubmit" type="submit" value="search"/>
 			</form>
 			<div id="browseProfileAnchor"></div>
@@ -105,6 +106,7 @@
 						<label><span class="darkGrey">New password:</span><input type="password" id="accountNewPassword" required/></label>
 						<input type="submit" value="Change Password"/>
 					</form>
+
 					<input type="button" value="Log Out" onClick="signOutUser();"/>
 				</div>
 			</div>

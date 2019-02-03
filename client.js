@@ -5,7 +5,7 @@ window.onload = function() {
     loadWelcome();
   }
 
-  hideErrorMessage();
+  hideMessage();
 }
 
 function insertHTML(source_id, dest_id) {
@@ -23,28 +23,28 @@ function insertString(string, dest_id) {
 
 function loadWelcome() {
   insertHTML("welcomeView", "content");
-  hideErrorMessage();
+  hideMessage();
 }
 
 function loadHome() {
-  setDisplayedUser(userGetEmail()); //Make sure that logged in user's view is loaded
+  setDisplayedUser(userGetLoggedInEmail()); //Make sure that logged in user's view is loaded
   insertHTML("navbarView", "content");
   insertHTML("profileView", "loggedInContent");
   userLoadInfo();
   userLoadMessages();
-  hideErrorMessage();
+  hideMessage();
 }
 
 function loadBrowse() {
   insertHTML("navbarView", "content");
   insertHTML("browseView", "loggedInContent");
-  hideErrorMessage();
+  hideMessage();
 }
 
 function loadAccount() {
   insertHTML("navbarView", "content");
   insertHTML("accountView", "loggedInContent");
-  hideErrorMessage();
+  hideMessage();
 }
 
 function userLoggedIn() {
@@ -94,15 +94,8 @@ function validatePasswordLength(form) {
 }
 
 function signInUser(form) {
-  var formId = form.id;
-
-  if (formId == "loginForm") {
-    var email = form.elements["loginEmail"].value;
-    var pass = form.elements["loginPassword"].value;
-  } else if (formId == "registerForm") {
-    var email = form.elements["registerEmail"].value;
-    var pass = form.elements["registerPass1"].value;
-  }
+  var email = form.elements["loginEmail"].value;
+  var pass = form.elements["loginPassword"].value;
 
   var obj = serverstub.signIn(email, pass);
 
@@ -110,7 +103,7 @@ function signInUser(form) {
     displayErrorMessage(obj.message);
   }
   else {
-    hideErrorMessage();
+    hideMessage();
     localStorage.setItem("token", obj.data);
     loadHome();
   }
@@ -139,7 +132,6 @@ function registerUser(form) {
   if (obj.success == false) {
     displayErrorMessage(obj.message);
   } else {
-    //signInUser(form);
     displayMessage("Succesfully registered user " + form.elements["registerEmail"].value);
   }
 }
@@ -178,63 +170,45 @@ function displayErrorMessage(message) {
 function displayMessage(message) {
   var error = document.getElementById("errorMessage");
   error.style.visibility = "visible";
-  error.style.backgroundColor = "green";
+  error.style.backgroundColor = "#39a657";
   var p = document.getElementById("errorMessageParagraph"); //This has to be after the first paste because it cant find the id if it's inside a script tag
   p.innerHTML=message;
 }
 
-function hideErrorMessage() {
+function hideMessage() {
     var error = document.getElementById("errorMessage");
     error.style.visibility = "hidden";
 }
 
-function getNameByToken(token) {
-  var obj = serverstub.getUserDataByToken(token);
-  var firstname = obj.data.firstname;
-  var familyname = obj.data.familyname;
-  var fullname = firstname + " " + familyname;
-  return fullname;
-}
-
-function userGetName() {
-  var token = localStorage.getItem("token")
-  var obj = serverstub.getUserDataByToken(token);
-  var firstname = obj.data.firstname;
-  var familyname = obj.data.familyname;
-  var fullname = firstname + " " + familyname;
-  return fullname;
-}
-
-function userPostMessageSelf(message) {
+function userGetFullName(email) {
   var token = localStorage.getItem("token");
-  var email = serverstub.getUserDataByToken(token).data.email;
-  serverstub.postMessage(token, message, email);
+  var user = serverstub.getUserDataByEmail(token, email);
+  return user.data.firstname + " " + user.data.familyname;
 }
 
 function userPostMessage(form) {
+  //Post a message to the displayed user
   var token = localStorage.getItem("token");
-  //var email = serverstub.getUserDataByToken(token).data.email;
   var email = getDisplayedUser();
   var message = form.elements["homeMessageField"].value;
-
 
   form.elements["homeMessageField"].value = "";
   serverstub.postMessage(token, message, email);
 }
 
 function userLoadMessages() {
+  //Loads the wall for the displayed user
   var token = localStorage.getItem("token");
   var email = getDisplayedUser();
   var messageArray = serverstub.getUserMessagesByEmail(token, email).data;
   var length = messageArray.length;
-  //alert(JSON.stringify(messages));
 
   var anchor = document.getElementById("wallMessages");
   anchor.innerHTML = "";
 
   if (length > 0) {
       for (var i=length-1; i>=0; i--) {
-        var sender = messageArray[i].writer;
+        var sender = userGetFullName(messageArray[i].writer) + " " + "(" + messageArray[i].writer + ")";
         var message = messageArray[i].content;
         anchor.innerHTML += '<div class="wallMessageDiv module"><p class="wallMessageSender dark">' + sender + ':' + '</p>' + '<p class="wallMessageContent darkGrey">' + message + '</p>' + '</div>';
       }
@@ -243,9 +217,8 @@ function userLoadMessages() {
     }
   }
 
-
-
 function userLoadInfo() {
+  //Prints the info for the displayed user
   var token = localStorage.getItem("token");
   var email = getDisplayedUser();
   var obj = serverstub.getUserDataByEmail(token, email);
@@ -253,22 +226,23 @@ function userLoadInfo() {
   var familyname = obj.data.familyname;
   var fullname = firstname + " " + familyname;
 
-  insertString(fullname, "homeFullName");
+  insertString(fullname, "profileFullName");
 
   var email = obj.data.email;
-  insertString(email, "homeEmail");
+  insertString(email, "profileEmail");
 
   var gender = obj.data.gender;
-  insertString(gender, "homeGender");
+  insertString('<span class="small darkGrey bold">gender: </span>' + gender,"profileGender");
 
   var country = obj.data.country;
-  insertString(country, "homeCountry");
+  insertString('<span class="small darkGrey bold">country: </span>' + country, "profileCountry");
 
   var city = obj.data.city;
-  insertString(city, "homeCity");
+  insertString('<span class="small darkGrey bold">city: </span>' + city, "profileCity");
 }
 
-function userGetEmail() {
+function userGetLoggedInEmail() {
+  //Gets the email of the logged in user
   var token = localStorage.getItem("token")
   var obj = serverstub.getUserDataByToken(token);
   var email = obj.data.email;
@@ -276,6 +250,7 @@ function userGetEmail() {
 }
 
 function userFind(form) {
+  //Displays a user in the browse tab if found
   var token = localStorage.getItem("token");
   var email = form.elements["browseEmail"].value;
   var obj = serverstub.getUserDataByEmail(token, email);
@@ -285,7 +260,7 @@ function userFind(form) {
     insertHTML("profileView", "browseProfileAnchor");
     userLoadInfo();
     userLoadMessages();
-    hideErrorMessage();
+    hideMessage();
   } else {
     displayErrorMessage(obj.message);
   }
