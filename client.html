@@ -1,35 +1,13 @@
 <!DOCTYPE html>
 <html>
+	<meta charset="utf-8"/>
 	<head>
 		<title>Twidder!</title>
     <link rel="stylesheet" href="client.css">
 		<script type="text/javascript" src=client.js></script>
 		<script type="text/javascript" src=serverstub.js></script>
 
-		<!--PROFILE VIEW-->
-		<script id="profileView" type="text/view">
-			<!--This code is used for displaying both the logged in user and a user found in the browse module-->
 
-			<div id="userInfo" class="module">
-				<img src="Images/Arnold.jpg" alt="Arnold" width=150 height=150/>
-				<p id="profileFullName" class="dark"></p>
-				<p id="profileEmail" class="darkGrey"></p>
-				<br/>
-				<p id="profileGender" class="darkGrey"></p>
-				<p id="profileCountry" class="darkGrey"></p>
-				<p id="profileCity" class="darkGrey"></p>
-			</div>
-
-			<div id="wall">
-				<div id="wallMessages"><!--Messages will be posted here--></div>
-
-				<form id="homeMessageForm" action="" onSubmit="userPostMessage(this); userLoadMessages(); return false;">
-					<textarea name="" id="homeMessageField" style="resize:vertical" required></textarea>
-					<input type="submit" value="Send"/>
-					<input type="button" value="Update wall" onClick="userLoadMessages(); return false;"/>
-				</form>
-			</div>
-		</script>
 
 		<!--WELCOME VIEW-->
 		<script id="welcomeView" type="text/view">
@@ -37,11 +15,12 @@
 				<div id="welcome" class="module">
 					<img src="Images/twidder2.png" alt="">
 					<p>The only place you get excited when a stranger follows you</p>
+					<p id="TDDD97">TDDD97 2019 - Created by Markus Karlsson and Viktor Rotting Tjädermo</p>
 				</div>
 
 				<!--LOGIN---------------------------------------->
 				<div class="form module" id="login">
-					<form id="loginForm" action="" onSubmit="signInUser(this); return false;">
+					<form id="loginForm" action="" onSubmit="userSignIn(this); return false;">
 							<label><span class="darkGrey small bold">Email:</span><input type="email" id="loginEmail" value="m@a.com" required></label>
 							<label><span class="darkGrey small bold">Password:</span><input type="password" id="loginPassword" value="aaaaaaaa" required></label>
 							<input class="submit" type="submit" value="Login">
@@ -51,7 +30,6 @@
 
 				<!--REGISTER--------------------------------------->
 				<div class="form module" id="register">
-					<!--<form id="registerForm" action="" onSubmit="validatePassword(); registerUser(this); return false;">-->
 					<form id="registerForm" action="" onSubmit="userTryRegister(this); return false;">
 						<label><span class="darkGrey small bold">First name:</span><input type="text" id="registerFirstName" value="namn" required></label>
 						<label><span class="darkGrey small bold">Last name:</span><input type="text" id="registerFamilyName" value="namnsson" required></label>
@@ -88,6 +66,31 @@
 			<div id="loggedInContent"></div>
 		</script>
 
+		<!--PROFILE VIEW-->
+		<script id="profileView" type="text/view">
+			<!--This code is used for displaying both the logged in user and a user found in the browse module-->
+
+			<div id="userInfo" class="module">
+				<img src="Images/Arnold.jpg" alt="Arnold" width=150 height=150/>
+				<p id="profileFullName" class="dark"></p>
+				<p id="profileEmail" class="darkGrey"></p>
+				<br/>
+				<p id="profileGender" class="darkGrey"></p>
+				<p id="profileCountry" class="darkGrey"></p>
+				<p id="profileCity" class="darkGrey"></p>
+			</div>
+
+			<div id="wall">
+				<div id="wallMessages"><!--Messages will be posted here--></div>
+
+				<form id="homeMessageForm" action="" onSubmit="userPostMessage(this); userLoadMessages(); return false;">
+					<textarea name="" id="homeMessageField" style="resize:vertical" required></textarea>
+					<input type="submit" value="Send"/>
+					<input type="button" value="Update wall" onClick="userLoadMessages(); return false;"/>
+				</form>
+			</div>
+		</script>
+
 		<!-- BROWSE VIEW -->
 		<script id="browseView" type="text/view">
 			<form action="" id="browseForm" onSubmit="userFind(this); return false;">
@@ -102,8 +105,9 @@
 			<div id="accountDiv" class="module centeredWrapper">
 				<div class="centeredWrapper">
 					<form action="" id="accountForm" onSubmit="userTryChangePassword(this); return false;">
-						<label><span class="darkGrey">Old password:</span><input type="password" id="accountOldPassword" required/></label>
-						<label><span class="darkGrey">New password:</span><input type="password" id="accountNewPassword" required/></label>
+						<label><span class="darkGrey">Old password:</span><input type="password" name="accountOldPassword" required/></label>
+						<label><span class="darkGrey">New password:</span><input type="password" name="accountNewPassword" required/></label>
+						<label><span class="darkGrey">Retype new password:</span><input type="password" name="accountNewPassword2" required/></label>
 						<input type="submit" value="Change Password"/>
 					</form>
 
@@ -114,10 +118,10 @@
 	</head>
 
 	<script id="wallMessage" type="text/view">
-		<div class="wallMessageDiv">
+		<!--<div class="wallMessageDiv">
 			<p class="wallMessageSender"></p>
 			<p class="wallMessageContent"></p>
-		</div>
+		</div>-->
 	</script>
 
   <body>

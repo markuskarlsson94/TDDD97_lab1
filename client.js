@@ -1,3 +1,5 @@
+var PASSWORDLENGTH = 8;
+
 window.onload = function() {
   if (userLoggedIn()) {
     loadHome();
@@ -21,6 +23,19 @@ function insertString(string, dest_id) {
   dest.innerHTML = string;
 }
 
+function markTab(tab) {
+  //Marks the selected tab in the navbar
+  if (tab == "home") {
+    var navbarTab = document.getElementById("navbarHome");
+  } else if (tab == "browse") {
+    var navbarTab = document.getElementById("navbarBrowse");
+  } else if (tab == "account") {
+    var navbarTab = document.getElementById("navbarAccount");
+  }
+
+  navbarTab.style.backgroundColor = "#2d3642";
+}
+
 function loadWelcome() {
   insertHTML("welcomeView", "content");
   hideMessage();
@@ -30,6 +45,7 @@ function loadHome() {
   setDisplayedUser(userGetLoggedInEmail()); //Make sure that logged in user's view is loaded
   insertHTML("navbarView", "content");
   insertHTML("profileView", "loggedInContent");
+  markTab("home");
   userLoadInfo();
   userLoadMessages();
   hideMessage();
@@ -38,12 +54,14 @@ function loadHome() {
 function loadBrowse() {
   insertHTML("navbarView", "content");
   insertHTML("browseView", "loggedInContent");
+  markTab("browse");
   hideMessage();
 }
 
 function loadAccount() {
   insertHTML("navbarView", "content");
   insertHTML("accountView", "loggedInContent");
+  markTab("account");
   hideMessage();
 }
 
@@ -64,7 +82,7 @@ function validatePassword(form) {
     var pass2 = document.getElementById("accountNewPassword").value;
   }
 
-  if (pass1.length < 8) {
+  if (pass1.length < PASSWORDLENGTH) {
     displayErrorMessage("The chosen password is too short");
     return false;
   } else if (pass1 != pass2) {
@@ -75,25 +93,7 @@ function validatePassword(form) {
   return true;
 }
 
-function validatePasswordLength(form) {
-  var formId = form.id;
-  if (formId == "registerForm") {
-    var pass1 = document.getElementById("registerPass1").value;
-    var pass2 = document.getElementById("registerPass2").value;
-  } else if (formId == "accountForm") {
-    var pass1 = document.getElementById("accountOldPassword").value;
-    var pass2 = document.getElementById("accountNewPassword").value;
-  }
-
-  if (pass1.length < 8 || pass2.length <8) {
-    displayErrorMessage("The chosen password is too short");
-    return false;
-  }
-
-  return true;
-}
-
-function signInUser(form) {
+function userSignIn(form) {
   var email = form.elements["loginEmail"].value;
   var pass = form.elements["loginPassword"].value;
 
@@ -144,12 +144,20 @@ function userTryRegister(form) {
 }
 
 function userTryChangePassword(form) {
-  var valid = validatePasswordLength(form);
-  if (valid == true) {
-    var token = localStorage.getItem("token");
-    var pass1 = document.getElementById("accountOldPassword").value;
-    var pass2 = document.getElementById("accountNewPassword").value;
-    var obj = serverstub.changePassword(token, pass1, pass2);
+  var token = localStorage.getItem("token");
+
+  oldPass = form.elements["accountOldPassword"].value;
+  newPass1 = form.elements["accountNewPassword"].value;
+  newPass2 = form.elements["accountNewPassword2"].value;
+
+  if (newPass1.length < PASSWORDLENGTH) {
+    displayErrorMessage("New password is too short");
+  } else if (newPass2.length < PASSWORDLENGTH) {
+    displayErrorMessage("Retyped password is too short");
+  } else if (newPass1 != newPass2) {
+    displayErrorMessage("Passwords do not match");
+  } else {
+    var obj = serverstub.changePassword(token, oldPass, newPass1);
 
     if (obj.success == false) {
       displayErrorMessage(obj.message);
