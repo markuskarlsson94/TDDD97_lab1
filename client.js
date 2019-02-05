@@ -73,14 +73,8 @@ function userLoggedIn() {
 }
 
 function validatePassword(form) {
-  var formId = form.id;
-  if (formId == "registerForm") {
-    var pass1 = document.getElementById("registerPass1").value;
-    var pass2 = document.getElementById("registerPass2").value;
-  } else if (formId == "accountForm") {
-    var pass1 = document.getElementById("accountOldPassword").value;
-    var pass2 = document.getElementById("accountNewPassword").value;
-  }
+  var pass1 = document.getElementById("registerPass1").value;
+  var pass2 = document.getElementById("registerPass2").value;
 
   if (pass1.length < PASSWORDLENGTH) {
     displayErrorMessage("The chosen password is too short");
@@ -109,7 +103,7 @@ function userSignIn(form) {
   }
 }
 
-function signOutUser() {
+function userSignOut() {
   var token = localStorage.getItem("token");
   var obj = serverstub.signOut(token);
 
@@ -280,4 +274,8 @@ function setDisplayedUser(email) {
 
 function getDisplayedUser(email) {
   return localStorage.getItem("displayedUser");
+}
+
+function userDelete() {
+  displayErrorMessage("Unable to delete account. You are stuck here forever lol");
 }
